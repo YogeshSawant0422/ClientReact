@@ -1,0 +1,26 @@
+.about{
+    padding: 60px 0px;
+}
+.aboutpart{
+    margin:auto;
+    padding: 0px 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.productpart{
+    padding: 0px 30px;
+}
+.title>a:hover{
+    color: #5cb874;
+}
+
+.title>a{
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (min-width:700px){
+    .aboutpart{
+        flex-wrap: nowrap;
+    }
+}

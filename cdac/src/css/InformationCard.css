@@ -1,0 +1,9 @@
+.InfoCard{
+    padding:15px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 4fr));
+    grid-gap: 1em;
+}
+.InfoCard>div{
+    box-shadow: 0px 0px 12px 0px rgb(34 34 34 / 10%);
+}

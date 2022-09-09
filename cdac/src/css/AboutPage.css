@@ -1,0 +1,53 @@
+.APContainer{
+    padding: 20px 0px;
+}
+.APMain{
+    margin: 0px auto;
+    padding: 0px 80px;
+}
+.section-title{
+    padding-bottom:10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-title h2{
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;  
+}
+
+.section-h6{
+    border: 2px solid #5cb874;
+    margin-bottom: 20px;
+    width: 5%;
+    margin: auto;
+}
+.section-para{
+    padding-top: 20px;
+    padding-bottom: 15px;
+    color: #aaa;
+    text-align: center;
+}
+.section-row{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.section-row>div{
+    padding: 15px;
+}
+.section-image{
+    height: 100%;
+    width: 100%;
+}
+
+.section-row>div>p{
+    text-align: center;
+}
+
+@media screen and (min-width:900px){
+    .section-row{
+        flex-wrap: wrap;
+    }
+}
