@@ -1,6 +1,7 @@
 import React from "react";
 import "../Dashboard/AdminDashboard.css";
 import "../AdminPanel/style.css";
+import { NavLink } from "react-router-dom";
 
 function AddNewTeacher() {
   return (
@@ -17,13 +18,19 @@ function AddNewTeacher() {
                 data-bs-placement="right"
                 data-bs-original-title="Icon-only"
               ></a> */}
-              <h4>Admin Dashboard</h4>
+             <NavLink
+                to="/adminDashboard"
+                style={{textDecoration:"none",margin:"10px",color:"black"}}
+              >
+                 <h4>Admin Dashboard</h4>
+              </NavLink>
+              
               <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
                 <li class="nav-item"></li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNewStudent"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -44,12 +51,12 @@ function AddNewTeacher() {
                       />
                     </svg>
                     <p>Add New Student</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNewTeacher"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -70,12 +77,12 @@ function AddNewTeacher() {
                       />
                     </svg>
                     <p>Add New Teacher</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNotifications"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -92,12 +99,12 @@ function AddNewTeacher() {
                       <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                     </svg>
                     <p>Add Notifications</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/viewNotification"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -117,12 +124,12 @@ function AddNewTeacher() {
                       />
                     </svg>
                     <p>View Notifications</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addMarks"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -140,7 +147,7 @@ function AddNewTeacher() {
                       <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                     </svg>
                     <p>Add Marks</p>
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>

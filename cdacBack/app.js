@@ -9,6 +9,7 @@ dotenv.config({ path: './config.env' });
 
 require('./db/conn');
 const User = require('./model/studentSchema');
+const Notice = require('./model/noticeShema');
 
 app.use(express.json());
 //app.use(require('./router/auth'));
@@ -18,6 +19,16 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running at port no ${PORT}`);
 })
+
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
+
 
 // REST API Actions And Methods (For Manupulate Data)
 
@@ -96,3 +107,22 @@ app.post('/StudentLogin', async (req, res) => {
     }
 });
 
+app.post('/addNotice', async (req, res) => {
+
+    const { notice } = req.body;
+    console.log(req.body);
+    if (!notice)
+    {
+        return res.status(422).json({ error: "Please Fill All Data" });
+    }
+
+    try {
+        const notice1 = new Notice({ notice });
+        await notice1.save();
+        res.status(201).json({ message: "Notice Added Successfully" });
+
+    } catch (err) {
+        console.log(err);
+    }
+    
+});

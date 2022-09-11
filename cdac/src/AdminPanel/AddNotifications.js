@@ -1,13 +1,84 @@
 import React from "react";
 import "../Dashboard/AdminDashboard.css";
 import "../AdminPanel/style.css";
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import Axios from 'axios';
+import { NavLink } from "react-router-dom";
 
-function AddNotifications() {
+  function AddNotifications() {
+
+    const navigate = useNavigate();
+
+    // const [notice, setUser] = useState({
+    //    notice:""
+    // });
+
+    // let name, value;
+    // const handleInputs = (e) => {
+    //   name = e.target.name;
+    //   value = e.target.value;
+
+    //   setUser({ ...notice, [name]: value });
+    // }
+
+    // //Sending Data To Backend 
+    // const PostData = async (e) => {
+    //   e.preventDefault();
+     
+    //   const { notice } = notice;
+
+    //   const res = await fetch("/addNotice", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type" : "applocation/json"
+    //     },
+    //     body: JSON.stringify({
+    //       notice  
+    //     })
+    //   });
+
+    //   const data = await res.json();
+
+    //   if (data.status === 422 || !data) {
+    //     window.alert("Invalid Data");
+    //     console.log("Inalid Data");
+    //   } else {
+    //     window.alert("Add Successfull");
+    //     console.log("Add Successfull");
+
+    //     navigate('/AdminDashboard');
+    //   }
+    // }
+
+    const url = "/addNotice";
+    const [data, setData] = useState({
+      notice: ""
+    })
+
+    function submit(e) {
+      e.preventDefault();
+      Axios.post(url, {
+        notice:data.notice
+      }).then(res => {
+        console.log(res.data)
+      })
+
+      navigate('/AdminDashboard');
+    }
+  
+    function handleInputs(e) {
+      const newdata = { ...data }
+      newdata[e.target.id] = e.target.value
+      setData(newdata)
+      console.log(newdata);
+    }
+
   return (
     <React.Fragment>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-auto bg-light sticky-top">
+        <div class="col-sm-auto bg-light sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
               {/* <a
                 href="!#"
@@ -17,13 +88,19 @@ function AddNotifications() {
                 data-bs-placement="right"
                 data-bs-original-title="Icon-only"
               ></a> */}
-              <h4>Admin Dashboard</h4>
+              <NavLink
+                to="/adminDashboard"
+                style={{textDecoration:"none",margin:"10px",color:"black"}}
+              >
+                 <h4>Admin Dashboard</h4>
+              </NavLink>
+              
               <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
                 <li class="nav-item"></li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNewStudent"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -44,12 +121,12 @@ function AddNotifications() {
                       />
                     </svg>
                     <p>Add New Student</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                   to="/addNewTeacher"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -70,12 +147,12 @@ function AddNotifications() {
                       />
                     </svg>
                     <p>Add New Teacher</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNotifications"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -92,12 +169,13 @@ function AddNotifications() {
                       <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                     </svg>
                     <p>Add Notifications</p>
-                  </a>
+                  </NavLink>
                 </li>
+
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/viewNotification"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -117,12 +195,12 @@ function AddNotifications() {
                       />
                     </svg>
                     <p>View Notifications</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addMarks"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -140,7 +218,7 @@ function AddNotifications() {
                       <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                     </svg>
                     <p>Add Marks</p>
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -154,39 +232,43 @@ function AddNotifications() {
               <div class="card-body">
                 <div class="card-body AuthorData">
                   <h5 class="card-title">Notification Details</h5>
+                <form method="POST" onSubmit={(e)=> submit(e)}>
                   <div class="card" style={{ width: "60rem" }}>
                     <div class="card-body">
                       <div style={{ padding: "5px" }}>
                         <div className="row">
                           <div>
                             <label
-                              for="exampleFormControlTextarea1"
+                              for="Note"
                               class="form-label"
                             >
                               Enter Notice Here : 
                             </label>
-                            <textarea
+                              <textarea
+                                onChange={(e)=>handleInputs(e)}
                               class="form-control"
-                              id="exampleFormControlTextarea1"
+                                id="notice"
+                                value={data.notice}
                               rows="3"
                               placeholder="Write Here"
+                          
                             ></textarea>
                           </div>
                         </div>
                         <div className="row">
                           <div class="col-md-12">
                             <button
-                              type="button"
+                              type="submit"
                               class="btn btn-primary"
-                              style={{ marginTop: "10px" }}
-                            >
-                              Publish Notice
-                            </button>
+                                style={{ marginTop: "10px" }}
+                                value=""
+                            >Publish Notice</button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </form>
                 </div>
               </div>
             </div>

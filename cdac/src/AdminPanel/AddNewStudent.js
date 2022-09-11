@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "../Dashboard/AdminDashboard.css";
 import "../AdminPanel/style.css";
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 function AddNewStudent() {
 
@@ -12,17 +13,19 @@ function AddNewStudent() {
   });
 
   let name, value;
-  const handleInput = (e) => {
+  const handleInputs = (e) => {
     name = e.target.name;
     value = e.target.value;
 
     setUser({ ...user, [name]: value });
   }
 
+  //Sending Data To Backend 
   const PostData = async (e) => {
     e.preventDefault();
-     
+
     const { mobile, name, email, password } = user;
+
     const res = await fetch("/addStudent", {
       method: "POST",
       headers: {
@@ -35,6 +38,8 @@ function AddNewStudent() {
     });
 
     const data = await res.json();
+
+    console.log(data);
 
     if (data.status === 422 || !data) {
       window.alert("Invalid Registration");
@@ -51,7 +56,7 @@ function AddNewStudent() {
     <React.Fragment>
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-auto bg-light sticky-top">
+           <div class="col-sm-auto bg-light sticky-top">
             <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
               {/* <a
                 href="!#"
@@ -61,13 +66,19 @@ function AddNewStudent() {
                 data-bs-placement="right"
                 data-bs-original-title="Icon-only"
               ></a> */}
-              <h4>Admin Dashboard</h4>
+              <NavLink
+                to="/adminDashboard"
+                style={{textDecoration:"none",margin:"10px",color:"black"}}
+              >
+                 <h4>Admin Dashboard</h4>
+              </NavLink>
+              
               <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center">
                 <li class="nav-item"></li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNewStudent"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -88,12 +99,12 @@ function AddNewStudent() {
                       />
                     </svg>
                     <p>Add New Student</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                   to="/addNewTeacher"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -114,12 +125,12 @@ function AddNewStudent() {
                       />
                     </svg>
                     <p>Add New Teacher</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/addNotifications"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -129,19 +140,20 @@ function AddNewStudent() {
                       xmlns="http://www.w3.org/2000/svg"
                       width="30"
                       height="30"
-                      fill="currentColor"
+                      fill="blue"
                       class="bi bi-bell"
                       viewBox="0 0 16 16"
                     >
                       <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                     </svg>
                     <p>Add Notifications</p>
-                  </a>
+                  </NavLink>
                 </li>
+
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/viewNotification"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -161,12 +173,12 @@ function AddNewStudent() {
                       />
                     </svg>
                     <p>View Notifications</p>
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="!#"
-                    class="nav-link py-3 px-2"
+                  <NavLink
+                    to="/AddMarks"
+                    className="nav-link py-3 px-2"
                     title=""
                     data-bs-toggle="tooltip"
                     data-bs-placement="right"
@@ -184,7 +196,7 @@ function AddNewStudent() {
                       <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                     </svg>
                     <p>Add Marks</p>
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -195,6 +207,7 @@ function AddNewStudent() {
               <div class="card-body">
                 <div class="card-body AuthorData">
                   <h5 class="card-title">Student Information</h5>
+                  <form method="POST">
                   <div class="card" style={{ width: "60rem" }}>
                     <div class="card-body">
                       <div style={{ padding: "5px" }}>
@@ -203,7 +216,7 @@ function AddNewStudent() {
                               <label for="mobile" class="form-label">Mobile Number</label>
                             <input type="number" class="form-control" id="mobile" name="mobile" placeholder="Enter Valid Mobile Number" maxLength={10}
                               value={user.mobile}
-                              onChange={handleInput}       
+                              onChange={handleInputs}       
                             />
                               
                           </div>
@@ -211,7 +224,7 @@ function AddNewStudent() {
                             <label for="name" class="form-label">Student Name</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Enter Full Name"
                                value={user.name}
-                               onChange={handleInput}
+                               onChange={handleInputs}
                             />
                           </div>
                             
@@ -221,25 +234,26 @@ function AddNewStudent() {
                               <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email"
                                value={user.email}
-                               onChange={handleInput}
+                               onChange={handleInputs}
                             />
                           </div>
                           <div class="col-md-6">
                             <label for="password" class="form-label">Password</label>
                             <input type="text" class="form-control" id="password" name="password" placeholder="Enter Password"
                                value={user.password}
-                               onChange={handleInput}
+                               onChange={handleInputs}
                             />
                           </div>
                         </div>
                         <div className="row">
                           <div class="col-md-12">
-                             <button type="button" class="btn btn-primary" style={{marginTop:"10px"}} onClick={PostData}>Add Student</button>
+                             <input type="submit" class="btn btn-primary" style={{marginTop:"10px"}} onClick={PostData} value="Add new student"/>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                 </form> 
                 </div>
               </div>
             </div>

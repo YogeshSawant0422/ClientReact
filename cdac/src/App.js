@@ -29,10 +29,9 @@ function App() {
         <Route path="/TeacherDashboard" element={<TeacherDashboard />}/> 
         <Route path="/AddNewStudent" element={<AddNewStudent />} /> 
         <Route path="/AddNewTeacher" element={<AddNewTeacher />} />
-        <Route path="/AddNotifications" element={<AddNotifications/>}/>
+        <Route path="/AddNotifications" element={<AddNotifications />} />
     </Routes>
   </BrowserRouter>
   )
 }
-
 export default App;
